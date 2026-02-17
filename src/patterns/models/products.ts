@@ -50,4 +50,23 @@ class MacLink implements ILink {
   }
 }
 
-export { IButton, ILink, MacButton, MacLink, WindowsButton, WindowsLink };
+// Legacy class with incompatible interface (Adaptee)
+class LegacyButton {
+  display(): string {
+    return 'Legacy button';
+  }
+
+  handleClick(): void {
+    console.log('click legacy button');
+  }
+}
+
+export {
+  IButton,
+  ILink,
+  MacButton,
+  MacLink,
+  WindowsButton,
+  WindowsLink,
+  LegacyButton,
+};
