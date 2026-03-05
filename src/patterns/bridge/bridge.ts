@@ -1,34 +1,29 @@
-export abstract class Button {
-  abstract render(): string;
-  abstract onClick(): void;
-}
+export class Button {
+  constructor(protected readonly implementor: ButtonImplementor) {}
 
-export class MacButton extends Button {
-  render() {
-    return 'mac render';
+  render(): string {
+    return this.implementor.render();
   }
 
   onClick(): void {
-    console.log('mac click');
+    this.implementor.onClick();
   }
 }
 
-export class WindowsButton extends Button {
-  render() {
-    return 'windows render';
-  }
-
-  onClick(): void {
-    console.log('windows click');
+export class LoadableButton extends Button {
+  loading(): void {
+    this.implementor.loading();
   }
 }
 
-export abstract class LoadableButton extends Button {
-  abstract loading(): void;
+export interface ButtonImplementor {
+  render(): string;
+  onClick(): void;
+  loading(): void;
 }
 
-export class WindowsLoadabeButton extends LoadableButton {
-  render() {
+export class WindowsButtonImplementor implements ButtonImplementor {
+  render(): string {
     return 'windows render';
   }
 
@@ -41,8 +36,8 @@ export class WindowsLoadabeButton extends LoadableButton {
   }
 }
 
-export class MacLoadabeButton extends LoadableButton {
-  render() {
+export class MacButtonImplementor implements ButtonImplementor {
+  render(): string {
     return 'mac render';
   }
 
