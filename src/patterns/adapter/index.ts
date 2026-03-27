@@ -7,4 +7,3 @@ const adaptedButton = new ButtonAdapter(legacyButton);
 
 console.log(adaptedButton.render());
 adaptedButton.onClick();
-

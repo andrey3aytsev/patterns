@@ -1,34 +1,35 @@
-export abstract class Button {
-  abstract render(): string;
-  abstract onClick(): void;
-}
+export class Button {
+  constructor(protected readonly implementor: ButtonImplementor) {}
 
-export class MacButton extends Button {
-  render() {
-    return 'mac render';
+  render(): string {
+    return this.implementor.render();
   }
 
   onClick(): void {
-    console.log('mac click');
+    this.implementor.onClick();
   }
 }
 
-export class WindowsButton extends Button {
-  render() {
-    return 'windows render';
-  }
-
-  onClick(): void {
-    console.log('windows click');
+export class LoadableButton extends Button {
+  loading(): void {
+    this.implementor.loading();
   }
 }
 
-export abstract class LoadableButton extends Button {
-  abstract loading(): void;
+export class IconButton extends Button {
+  showIcon(): void {
+    console.log(`show icon for ${this.render()}`);
+  }
 }
 
-export class WindowsLoadabeButton extends LoadableButton {
-  render() {
+export interface ButtonImplementor {
+  render(): string;
+  onClick(): void;
+  loading(): void;
+}
+
+export class WindowsButtonImplementor implements ButtonImplementor {
+  render(): string {
     return 'windows render';
   }
 
@@ -41,8 +42,8 @@ export class WindowsLoadabeButton extends LoadableButton {
   }
 }
 
-export class MacLoadabeButton extends LoadableButton {
-  render() {
+export class MacButtonImplementor implements ButtonImplementor {
+  render(): string {
     return 'mac render';
   }
 
@@ -52,5 +53,19 @@ export class MacLoadabeButton extends LoadableButton {
 
   loading(): void {
     console.log('mac loading');
+  }
+}
+
+export class LinuxButtonImplementor implements ButtonImplementor {
+  render(): string {
+    return 'linux render';
+  }
+
+  onClick(): void {
+    console.log('linux click');
+  }
+
+  loading(): void {
+    console.log('linux loading');
   }
 }
