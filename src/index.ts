@@ -5,3 +5,4 @@
 // import './patterns/prototype';
 // import './patterns/singleton';
 // import './patterns/bridge';
+// import './patterns/composite';
