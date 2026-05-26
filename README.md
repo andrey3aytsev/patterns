@@ -8,7 +8,7 @@
 
 ```
 src/
-├── index.ts                # точка входа: раскомментируйте нужный паттерн
+├── index.ts                # точка входа: запуск демки по имени паттерна
 └── patterns/
     ├── models/             # общие модели для всех паттернов
     ├── abstract-factory/
@@ -27,7 +27,8 @@ src/
 
 ```bash
 npm install
-npm start   # после раскомментирования в src/index.ts
+npm start               # список доступных паттернов
+npm start -- composite
 ```
 
 ## Паттерны
